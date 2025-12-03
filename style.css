@@ -1,0 +1,94 @@
+.background {
+    position: absolute;
+    width: 1920px;
+    height: 1757px;
+    left: 0;
+    top: 50px;
+}
+
+ /* титульник */
+.title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    position: absolute;
+    width: 392px;
+    height: 92px;
+    left: calc(50% - 392px/2 - 26px);
+    top: -6px;
+}
+
+.title__subheading{ 
+    width: 210px; /* сделал 210 потому что 207 превращвется в колонку, я бы не ставил вообще размер, но следую четко макету(ну почти) */
+    height: 24px;
+
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1E212C;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0;
+    }
+
+.title__heading{
+    width: 392px;
+    height: 60px;
+
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 130%;
+    color: #1E212C;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0; 
+}
+
+/* точки и стрелки */
+.decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dots{
+    position: absolute;
+    width: 143px;
+    height: 105px;
+    left: 1803px;
+    top: 0;
+    opacity: 0.8;
+}
+
+.shape_left{
+    position: absolute;
+    width: 83;
+    height: 44;
+    top: 637px;
+    left: 56px;
+    opacity: 0.2;
+
+}
+
+.shape_right{
+    position: absolute;
+    width: 84.99890899658236;
+    height: 84.99955749511751;
+    top: 1054px;
+    left: 1763px;
+    opacity: 0.2;
+}
