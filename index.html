@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <main class="background">
+    <main class="main_container">
+
+    <div class="background">
 
         <div class="title">
             <h6 class="title__subheading">Enjoy your studying!</h6>
@@ -22,7 +24,206 @@
             <img src="images/shapes2.png" alt="" class="shape_right">
         </div>
 
+    </div>
+
+    <div class="tabs">
+        <button class="tab tab--all tab--active" data-category="all" type="button">
+            <span class="tab__text">All</span>
+            <span class="tab__count" id="all-count">0</span>
+        </button>
+
+        <button class="tab tab--marketing" data-category="marketing" type="button">
+            <span class="tab__text">Marketing</span>
+            <span class="tab__count">4</span>
+        </button>
+
+        <button class="tab tab--management" data-category="management" type="button">
+            <span class="tab__text">Management</span>
+            <span class="tab__count">3</span>
+        </button>
+
+        <button class="tab tab--hr" data-category="hr" type="button">
+            <span class="tab__text">HR & Recruting</span>
+            <span class="tab__count">5</span>
+        </button>
+
+        <button class="tab tab--design" data-category="design" type="button">
+            <span class="tab__text">Design</span>
+            <span class="tab__count">2</span>
+        </button>
+
+        <button class="tab tab--development" data-category="development" type="button">
+            <span class="tab__text">Development</span>
+            <span class="tab__count">3</span>
+        </button>
+    </div>
+
+    <div class="search">
+        <input type="text" 
+            class="search__input" 
+            placeholder="Search course..."
+            aria-label="Search courses"
+            id="search-input">
+        <button type="button" class="search__button" aria-label="Search">
+            <img src="images/search-icon.png" alt="Search" class="search__icon">
+        </button>
+    </div>
+    
+    <div class="courses-grid">
+
+    <article class="course-card" data-category="marketing">
+        <div class="course-card__image">
+            <img src="images/course1.png" alt="">
+        </div>
+    
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--marketing">Marketing</div>
+        
+            <h3 class="course-card__title">The Ultimate Google Ads Training Course</h3>
+        
+            <div class="course-card__info">
+                <div class="course-card__price">$100</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Jerome Bell</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="management">
+        <div class="course-card__image">
+            <img src="images/course2.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--management">Management</div>
+
+            <h3 class="course-card__title">Prduct Management Fundamentals</h3>
+
+            <div class="course-card__info">
+                <div class="course-card__price">$480</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Marvin McKinney</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="hr">
+        <div class="course-card__image">
+            <img src="images/course3.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--hr">HR & Recruting</div>
+        
+            <h3 class="course-card__title">HR  Management and Analytics</h3>
+        
+            <div class="course-card__info">
+                <div class="course-card__price">$200</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Leslie Alexander Li</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="marketing">
+        <div class="course-card__image">
+            <img src="images/course4.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--design">Marketing</div>
+            <h3 class="course-card__title">Brand Management & PR Communications</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$530</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Kristin Watson</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="design">
+        <div class="course-card__image">
+            <img src="images/course5.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--development">Design</div>
+            <h3 class="course-card__title">Graphic Design Basic</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$500</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Guy Hawkins</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="management">
+        <div class="course-card__image">
+            <img src="images/course6.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--development">Management</div>
+            <h3 class="course-card__title">Business Development Management</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$400</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Dianne Russell</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="development">
+        <div class="course-card__image">
+            <img src="images/course7.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--hr">Development</div>
+            <h3 class="course-card__title">Highload Software Architecture</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$600</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Brooklyn Simmons</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="hr">
+        <div class="course-card__image">
+            <img src="images/course8.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--design">HR & Recruting</div>
+            <h3 class="course-card__title">Human Resources – Selection and Recruitment</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$150</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Kathryn Murphy</div>
+            </div>
+        </div>
+    </article>
+
+    <article class="course-card" data-category="design">
+        <div class="course-card__image">
+            <img src="images/course9.png" alt="">
+        </div>
+        <div class="course-card__content">
+            <div class="course-card__badge course-card__badge--marketing">Design</div>
+            <h3 class="course-card__title">User Experience. Human-centered Design</h3>
+            <div class="course-card__info">
+                <div class="course-card__price">$240</div>
+                <div class="course-card__divider"></div>
+                <div class="course-card__speaker">by Cody Fisher</div>
+            </div>
+        </div>
+    </article>
+    </div>
+
+    <button class="load-more">
+        <div class="load-more__icon">
+            <img src="images/load.png" alt="Arrow" width="24" height="24">
+        </div>
+        <span class="load-more__text">Load more</span>
+    </button>
+
     </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,690 @@
+/* основной контейнер */
+.main_container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.background {
+    position: absolute;
+    width: 1920px;
+    height: 1757px;
+    left: 0;
+    top: 50px;
+    background-color: #ffffff;
+}
+
+/* картинки по краям */
+.decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    
+    img {
+        position: absolute;
+    }
+    
+    .dots {
+        width: 143px;
+        height: 105px;
+        left: 1803px;
+        top: 0;
+        opacity: 0.8;
+    }
+    
+    .shape_left {
+        width: 83px;
+        height: 44px;
+        left: 56px;
+        top: 637px;
+        opacity: 0.2;
+    }
+    
+    .shape_right {
+        width: 85px;
+        height: 85px;
+        left: 1763px;
+        top: 1054px;
+        opacity: 0.2;
+    }
+}
+
+/* Заголовоки */
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    
+    position: absolute;
+    width: 392px;
+    height: 92px;
+    left: calc(50% - 392px/2 - 26px);
+    top: -6px;
+    
+    &__subheading {
+        width: 210px;
+        height: 24px;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #1E212C;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 0;
+    }
+    
+    &__heading {
+        width: 392px;
+        height: 60px;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 46px;
+        line-height: 130%;
+        color: #1E212C;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 0;
+    }
+}
+
+/* контейнер кнопок */
+.tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    
+    position: absolute;
+    width: 813px;
+    height: 46px;
+    left: 345px;
+    top: 221px;
+}
+
+/* стили для кнопок */
+.tab {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    height: 46px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &__text {
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 160%;
+        text-align: center;
+        color: #9A9CA5;
+        white-space: nowrap;
+    }
+    
+    &__count {
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 10px;
+        line-height: 150%;
+        text-align: center;
+        color: #9A9CA5;
+        margin-left: 8px; 
+    }
+    
+    /* когда активно */
+    &--active {
+        border-color: #FF3F3A;
+        
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    /* при наведении */
+    &:not(.tab--active):hover {
+        border-color: #FF3F3A;
+        
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+/* кнопка All */
+.tab--all {
+    width: 77px;
+}
+
+/* кнопка Marketing */
+.tab--marketing {
+    width: 124px;
+    
+    .tab__text {
+        width: 74px;
+        height: 26px;
+        color: #9A9CA5;
+    }
+    
+    .tab__count {
+        width: 6px;
+        height: 15px;
+        color: #9A9CA5;
+    }
+    
+    &.tab--active {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    &:not(.tab--active):hover {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+/* кнопка Management */
+.tab--management {
+    width: 144px;
+    
+    .tab__text {
+        width: 94px;
+        height: 26px;
+        color: #9A9CA5;
+    }
+    
+    .tab__count {
+        width: 6px;
+        height: 15px;
+        color: #9A9CA5;
+    }
+    
+    &.tab--active {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    &:not(.tab--active):hover {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+/* кнопка HR & Recruting */
+.tab--hr {
+    width: 161px;
+    
+    .tab__text {
+        width: 111px;
+        height: 26px;
+        color: #9A9CA5;
+    }
+    
+    .tab__count {
+        width: 6px;
+        height: 15px;
+        color: #9A9CA5;
+    }
+    
+    &.tab--active {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    &:not(.tab--active):hover {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+/* кнопка Design */
+.tab--design {
+    width: 100px;
+    
+    .tab__text {
+        width: 50px;
+        height: 26px;
+        color: #9A9CA5;
+    }
+    
+    .tab__count {
+        width: 6px;
+        height: 15px;
+        color: #9A9CA5;
+    }
+    
+    &.tab--active {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    &:not(.tab--active):hover {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+/* кнопка Development */
+.tab--development {
+    width: 147px;
+    
+    .tab__text {
+        width: 97px;
+        height: 26px;
+        color: #9A9CA5;
+    }
+    
+    .tab__count {
+        width: 6px;
+        height: 15px;
+        color: #9A9CA5;
+    }
+    
+    &.tab--active {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+    
+    &:not(.tab--active):hover {
+        .tab__text {
+            color: #FF3F3A;
+        }
+        
+        .tab__count {
+            color: #FF3F3A;
+        }
+    }
+}
+
+
+/* строка для поиска */
+.search {
+    box-sizing: border-box;
+    position: absolute;
+    width: 315px;
+    height: 44px;
+    right: 345px;
+    top: 222px;
+    background: #FFFFFF;
+    border: 1px solid #D7DADD;
+    border-radius: 4px;
+    
+    &__input {
+        position: absolute;
+        width: calc(100% - 48px);
+        height: 100%;
+        left: 0;
+        top: 0;
+        padding: 0 16px;
+        border: none;
+        background: transparent;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        color: #1E212C;
+        border-radius: 4px;
+        
+        &::placeholder {
+            color: #9A9CA5;
+        }
+        
+        &:focus {
+            outline: none;
+            border-color: #FF3F3A;
+        }
+    }
+    
+    &__button {
+        position: absolute;
+        width: 48px;
+        height: 100%;
+        right: 0;
+        top: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 4px 4px 0;
+        transition: background-color 0.3s;
+        
+        &:hover {
+            background-color: #F4F5F6;
+        }
+        
+        &:active {
+            background-color: #E5E8ED;
+        }
+    }
+    
+    &__icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* картоски товара */
+.courses-grid {
+    position: absolute;
+    width: 1230px;
+    height: 1374px;
+    left: 345px;
+    top: 327px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    overflow-y: auto;
+}
+
+.course-card {
+    box-sizing: border-box;
+    position: relative;
+    width: 390px;
+    height: 438px;
+    background: #FFFFFF;
+    border: 1px solid #E5E8ED;
+    box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08), 
+                0px 30px 24px -10px rgba(154, 156, 165, 0.05), 
+                0px 12px 10px -6px rgba(154, 156, 165, 0.04), 
+                0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.16), 
+                    0px 30px 24px -10px rgba(154, 156, 165, 0.12), 
+                    0px 12px 10px -6px rgba(154, 156, 165, 0.10), 
+                    0px 4px 8px -4px rgba(30, 33, 44, 0.08);
+    }
+    
+    &__image {
+        height: 240px;
+        width: 100%;
+        background: #F4F5F6;
+        border-radius: 4px 4px 0 0;
+        overflow: hidden;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+    }
+    
+    &:hover &__image img {
+        transform: scale(1.05);
+    }
+    
+    /* контент карточек */
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 20px;
+        position: absolute;
+        width: 342px;
+        left: 24px;
+        top: 264px;
+    }
+    
+    /* категории курсво */
+    &__badge {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1px 8px;
+        gap: 10px;
+        height: 23px;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        color: #FFFFFF;
+        border-radius: 4px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        
+        &--marketing {
+            width: 80px;
+            background: #03CEA4;
+        }
+        
+        &--management {
+            width: 97px;
+            background: #5A87FC;
+        }
+        
+        &--hr {
+            width: 112px;
+            background: #F89828;
+        }
+        
+        &--design {
+            width: 59px;
+            background: #F52F6E;
+        }
+        
+        &--development {
+            width: 99px;
+            background: #7772F1;
+        }
+    }
+    
+    /* название курса */
+    &__title {
+        width: 342px;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 150%;
+        color: #1E212C;
+        margin: 0;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        
+        &--two-lines {
+            height: 60px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        &--one-line {
+            height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    
+    /* информация о курсе */
+    &__info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px;
+        gap: 8px;
+        height: 27px;
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+    }
+    
+    &__price {
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 150%;
+        color: #FF4242;
+    }
+    
+    &__divider {
+        width: 16px;
+        height: 0px;
+        border: 1px solid #787A80;
+        transform: rotate(90deg);
+    }
+    
+    &__speaker {
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        color: #787A80;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* классы для разных высот контента */
+.course-card__content--120 {
+    height: 120px;
+}
+
+.course-card__content--150 {
+    height: 150px;
+}
+
+.load-more {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+    
+    position: absolute;
+    width: 116px;
+    height: 26px;
+    left: 902px;
+    top: 1781px;
+    
+    /* обнуление стилей кнопки */
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    transition: all 0.3s ease;
+    
+    &:hover {
+        gap: 12px;
+        
+        .load-more__icon {
+            transform: translateX(4px);
+        }
+        
+        .load-more__text {
+            color: #FF3F3A;
+        }
+        
+        svg path {
+            stroke: #FF3F3A;
+        }
+    }
+    
+    &__icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+    
+    &__text {
+        width: 76px;
+        height: 26px;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 160%;
+        color: #424551;
+        transition: color 0.3s ease;
+    }
+}
