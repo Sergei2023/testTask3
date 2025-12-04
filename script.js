@@ -1,4 +1,3 @@
-// Данные всех карточек
 const courses = [
     {
         id: 1,
@@ -98,7 +97,7 @@ const courses = [
     },
 ];
 
-// Состояние приложения
+// состояние приложения
 const state = {
     currentCategory: 'all',
     searchQuery: '',
@@ -115,7 +114,7 @@ const elements = {
     allCount: document.getElementById('all-count')
 };
 
-// Подсчет карточек по категориям
+// подччет карточек по категориям
 function countCoursesByCategory() {
     const counts = {
         all: courses.length,
@@ -129,16 +128,16 @@ function countCoursesByCategory() {
     return counts;
 }
 
-// Обновление цифр в кнопках фильтров
+// обновление цифр в кнопках фильтров
 function updateFilterCounts() {
     const counts = countCoursesByCategory();
     
-    // Обновляем цифру в "All"
+    // Обновллил цифру в "All"
     if (elements.allCount) {
         elements.allCount.textContent = counts.all;
     }
     
-    // Обновляем остальные кнопки
+    // Обновил остальные кнопки
     document.querySelectorAll('.tab__count').forEach(countEl => {
         const tab = countEl.closest('.tab');
         const category = tab.dataset.category;
@@ -148,14 +147,14 @@ function updateFilterCounts() {
     });
 }
 
-// Фильтрация карточек по категории и поиску
+// фильтр по поиску
 function filterCourses() {
     return courses.filter(course => {
-        // Фильтр по категории
+        // фильтр по категориям
         const categoryMatch = state.currentCategory === 'all' || 
                             course.category === state.currentCategory;
         
-        // Фильтр по поиску
+        // фильтр по поиску
         const searchMatch = !state.searchQuery || 
                            course.title.toLowerCase().includes(state.searchQuery.toLowerCase());
         
@@ -163,7 +162,7 @@ function filterCourses() {
     });
 }
 
-// Получение имени категории для отображения
+// получаем имя категорий 
 function getCategoryName(categoryKey) {
     const names = {
         marketing: 'Marketing',
@@ -175,7 +174,7 @@ function getCategoryName(categoryKey) {
     return names[categoryKey] || categoryKey;
 }
 
-// Рендер карточек
+// рендер карточек
 function renderCourses() {
     const filteredCourses = filterCourses();
     const coursesToShow = filteredCourses.slice(0, state.visibleCourses);
@@ -197,7 +196,7 @@ function renderCourses() {
         card.dataset.category = course.category;
         card.dataset.id = course.id;
         
-        // Определяем высоту контента и названия
+        // Определил высоту контента и названия
         const contentHeight = course.category === 'marketing' || 
                             course.category === 'hr' && course.id === 7 || 
                             course.category === 'design' && course.id === 8 ? '150' : '120';
@@ -233,41 +232,40 @@ function renderCourses() {
     }
 }
 
-// Обработка кликов по фильтрам
+// обработка кликов по фильтрам
 function handleFilterClick(e) {
     const tab = e.target.closest('.tab');
     if (!tab) return;
     
     const category = tab.dataset.category;
     
-    // Обновляем активную кнопку
+    // обновил активную кнопку
     document.querySelectorAll('.tab').forEach(t => {
         t.classList.remove('tab--active');
     });
     tab.classList.add('tab--active');
     
-    // Обновляем состояние и перерендериваем
+    // обновил состояние и перерендериваем
     state.currentCategory = category;
     state.visibleCourses = 9;
     renderCourses();
 }
 
-// Обработка поиска
+// обработка поиска
 function handleSearch(e) {
     state.searchQuery = e.target.value;
     state.visibleCourses = 9;
     renderCourses();
 }
 
-// Обработка Load more
+// обработка Load more
 function handleLoadMore() {
     state.visibleCourses += 6;
     renderCourses();
 }
 
-// Обработчики событий
+// обработчики событий
 function setupEventListeners() {
-    // Клики по фильтрам
     if (elements.tabs) {
         elements.tabs.addEventListener('click', handleFilterClick);
     }
@@ -283,17 +281,15 @@ function setupEventListeners() {
     }
 }
 
-// Инициализация приложения
 function init() {
-    // Обновляем счетчики
+    // обновляем счетчики
     updateFilterCounts();
     
-    // Рендерим начальные карточки
+    // рендерим начальные карточки
     renderCourses();
     
-    // Назначаем обработчики событий
+    // назначаем обработчики событий
     setupEventListeners();
 }
 
-// Запуск при загрузке страницы
 document.addEventListener('DOMContentLoaded', init);

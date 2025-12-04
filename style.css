@@ -4,15 +4,30 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .background {
   position: absolute;
-  width: 1920px;
-  height: 1757px;
-  left: 0;
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  min-height: 1757px;
+  left: 50%;
+  transform: translateX(-50%);
   top: 50px;
   background-color: #ffffff;
+}
+@media (max-width: 768px) {
+  .background {
+    top: 20px;
+    min-height: auto;
+    position: relative;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* картинки по краям */
@@ -32,6 +47,16 @@
   top: 0;
   opacity: 0.8;
 }
+@media (max-width: 1600px) {
+  .decorations .dots {
+    left: calc(100% - 200px);
+  }
+}
+@media (max-width: 768px) {
+  .decorations .dots {
+    display: none;
+  }
+}
 .decorations .shape_left {
   width: 83px;
   height: 44px;
@@ -39,12 +64,27 @@
   top: 637px;
   opacity: 0.2;
 }
+@media (max-width: 768px) {
+  .decorations .shape_left {
+    display: none;
+  }
+}
 .decorations .shape_right {
   width: 85px;
   height: 85px;
   left: 1763px;
   top: 1054px;
   opacity: 0.2;
+}
+@media (max-width: 1600px) {
+  .decorations .shape_right {
+    left: calc(100% - 150px);
+  }
+}
+@media (max-width: 768px) {
+  .decorations .shape_right {
+    display: none;
+  }
 }
 
 /* Заголовоки */
@@ -60,13 +100,24 @@
   left: calc(50% - 196px - 26px);
   top: -6px;
 }
+@media (max-width: 1024px) {
+  .title {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 40px auto 30px;
+    width: 90%;
+    max-width: 392px;
+    height: auto;
+  }
+}
 .title__subheading {
   width: 210px;
   height: 24px;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(14px, 1.2vw, 16px);
   line-height: 150%;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -75,20 +126,23 @@
   order: 0;
   flex-grow: 0;
   margin: 0;
+  text-align: center;
 }
 .title__heading {
-  width: 392px;
-  height: 60px;
+  width: 100%;
+  max-width: 392px;
+  height: auto;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 46px;
+  font-size: clamp(28px, 2.8vw, 46px);
   line-height: 130%;
   color: #1E212C;
   flex: none;
   order: 1;
   flex-grow: 0;
   margin: 0;
+  text-align: center;
 }
 
 /* контейнер кнопок */
@@ -101,8 +155,37 @@
   position: absolute;
   width: 813px;
   height: 46px;
-  left: 345px;
+  left: 17.96875%; /* Процент от ширины */
   top: 221px;
+}
+@media (max-width: 1400px) {
+  .tabs {
+    width: 60%;
+    left: 5%;
+  }
+}
+@media (max-width: 1200px) {
+  .tabs {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 813px;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 80px; /* Отступ для поиска */
+  }
+}
+@media (max-width: 768px) {
+  .tabs {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin: 20px auto 100px; /* Больше отступ для поиска */
+    width: 95%;
+    gap: 8px;
+  }
 }
 
 /* стили для кнопок */
@@ -121,11 +204,17 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+@media (max-width: 768px) {
+  .tab {
+    padding: 8px 12px;
+    height: 40px;
+  }
+}
 .tab__text {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(14px, 1vw, 16px);
   line-height: 160%;
   text-align: center;
   color: #9A9CA5;
@@ -135,7 +224,7 @@
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 10px;
+  font-size: clamp(8px, 0.8vw, 10px);
   line-height: 150%;
   text-align: center;
   color: #9A9CA5;
@@ -170,10 +259,23 @@
 .tab--all {
   width: 77px;
 }
+@media (max-width: 768px) {
+  .tab--all {
+    width: auto;
+  }
+}
 
 /* кнопка Marketing */
 .tab--marketing {
   width: 124px;
+}
+@media (max-width: 768px) {
+  .tab--marketing {
+    width: auto;
+  }
+  .tab--marketing .tab__text {
+    width: auto;
+  }
 }
 .tab--marketing .tab__text {
   width: 74px;
@@ -202,6 +304,14 @@
 .tab--management {
   width: 144px;
 }
+@media (max-width: 768px) {
+  .tab--management {
+    width: auto;
+  }
+  .tab--management .tab__text {
+    width: auto;
+  }
+}
 .tab--management .tab__text {
   width: 94px;
   height: 26px;
@@ -228,6 +338,14 @@
 /* кнопка HR & Recruting */
 .tab--hr {
   width: 161px;
+}
+@media (max-width: 768px) {
+  .tab--hr {
+    width: auto;
+  }
+  .tab--hr .tab__text {
+    width: auto;
+  }
 }
 .tab--hr .tab__text {
   width: 111px;
@@ -256,6 +374,14 @@
 .tab--design {
   width: 100px;
 }
+@media (max-width: 768px) {
+  .tab--design {
+    width: auto;
+  }
+  .tab--design .tab__text {
+    width: auto;
+  }
+}
 .tab--design .tab__text {
   width: 50px;
   height: 26px;
@@ -282,6 +408,14 @@
 /* кнопка Development */
 .tab--development {
   width: 147px;
+}
+@media (max-width: 768px) {
+  .tab--development {
+    width: auto;
+  }
+  .tab--development .tab__text {
+    width: auto;
+  }
 }
 .tab--development .tab__text {
   width: 97px;
@@ -312,11 +446,33 @@
   position: absolute;
   width: 315px;
   height: 44px;
-  right: 345px;
+  left: 65.625%; /* 1260px в процентах от 1920px */
   top: 222px;
   background: #FFFFFF;
   border: 1px solid #D7DADD;
   border-radius: 4px;
+}
+@media (max-width: 1400px) {
+  .search {
+    left: 70%; /* Процент от ширины экрана */
+  }
+}
+@media (max-width: 1200px) {
+  .search {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+  }
+}
+@media (max-width: 768px) {
+  .search {
+    width: 95%;
+    margin: 20px auto 30px;
+  }
 }
 .search__input {
   position: absolute;
@@ -330,7 +486,7 @@
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: clamp(12px, 0.9vw, 14px);
   line-height: 150%;
   color: #1E212C;
   border-radius: 4px;
@@ -373,12 +529,40 @@
   position: absolute;
   width: 1230px;
   height: 1374px;
-  left: 345px;
+  left: 17.96875%;
   top: 327px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   overflow-y: auto;
+}
+@media (max-width: 1400px) {
+  .courses-grid {
+    width: 90%;
+    left: 5%;
+  }
+}
+@media (max-width: 1200px) {
+  .courses-grid {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1230px;
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+    position: relative;
+    top: 0;
+    margin: 20px auto;
+    margin-top: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 95%;
+    margin-top: 120px;
+  }
 }
 
 .course-card {
@@ -392,6 +576,21 @@
   border-radius: 4px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
+}
+@media (max-width: 1200px) {
+  .course-card {
+    width: 100%;
+    max-width: 390px;
+  }
+}
+@media (max-width: 768px) {
+  .course-card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 438px;
+  }
 }
 .course-card:hover {
   transform: translateY(-8px);
@@ -403,6 +602,11 @@
   background: #F4F5F6;
   border-radius: 4px 4px 0 0;
   overflow: hidden;
+}
+@media (max-width: 768px) {
+  .course-card__image {
+    height: 200px;
+  }
 }
 .course-card__image img {
   width: 100%;
@@ -423,9 +627,19 @@
   padding: 0px;
   gap: 20px;
   position: absolute;
-  width: 342px;
-  left: 24px;
-  top: 264px;
+  width: 87.69%;
+  left: 6.15%;
+  top: 60.27%;
+}
+@media (max-width: 768px) {
+  .course-card__content {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: 0;
+    margin-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 .course-card {
   /* категории курсво */
@@ -440,7 +654,7 @@
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: clamp(12px, 1vw, 14px);
   line-height: 150%;
   color: #FFFFFF;
   border-radius: 4px;
@@ -472,11 +686,11 @@
   /* название курса */
 }
 .course-card__title {
-  width: 342px;
+  width: 100%;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: clamp(16px, 1.2vw, 20px);
   line-height: 150%;
   color: #1E212C;
   margin: 0;
@@ -491,11 +705,23 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+@media (max-width: 768px) {
+  .course-card__title--two-lines {
+    height: auto;
+    min-height: 60px;
+  }
+}
 .course-card__title--one-line {
   height: 30px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+  .course-card__title--one-line {
+    height: auto;
+    min-height: 30px;
+  }
 }
 .course-card {
   /* информация о курсе */
@@ -511,11 +737,18 @@
   order: 2;
   flex-grow: 0;
 }
+@media (max-width: 480px) {
+  .course-card__info {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 4px;
+  }
+}
 .course-card__price {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  font-size: clamp(14px, 1.1vw, 18px);
   line-height: 150%;
   color: #FF4242;
 }
@@ -529,21 +762,39 @@
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: clamp(14px, 1.1vw, 18px);
   line-height: 150%;
   color: #787A80;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@media (max-width: 480px) {
+  .course-card__speaker {
+    width: 100%;
+    text-align: center;
+  }
+}
 
 /* классы для разных высот контента */
 .course-card__content--120 {
   height: 120px;
 }
+@media (max-width: 768px) {
+  .course-card__content--120 {
+    height: auto;
+    min-height: 120px;
+  }
+}
 
 .course-card__content--150 {
   height: 150px;
+}
+@media (max-width: 768px) {
+  .course-card__content--150 {
+    height: auto;
+    min-height: 150px;
+  }
 }
 
 .load-more {
@@ -557,6 +808,17 @@
   height: 26px;
   left: 902px;
   top: 1781px;
+}
+@media (max-width: 1200px) {
+  .load-more {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    top: 0;
+    margin: 40px auto;
+  }
+}
+.load-more {
   /* обнуление стилей кнопки */
   background: none;
   border: none;
@@ -589,10 +851,37 @@
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(14px, 1vw, 16px);
   line-height: 160%;
   color: #424551;
   transition: color 0.3s ease;
+}
+
+/* Сообщение "Ничего не найдено" */
+.no-results {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 60px 20px;
+}
+.no-results p {
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  color: #9A9CA5;
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+  .tab {
+    flex: 1;
+    min-width: 100px;
+    justify-content: center;
+  }
+  .course-card {
+    height: auto;
+  }
+  .course-card__image {
+    height: 180px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
