@@ -9,7 +9,7 @@ const courses = [
     },
     {
         id: 2,
-        title: "Prduct Management Fundamentals",
+        title: "Product Management Fundamentals",
         category: "management",
         price: "$480",
         author: "Marvin McKinney",
@@ -17,7 +17,7 @@ const courses = [
     },
     {
         id: 3,
-        title: "HR  Management and Analytics",
+        title: "HR Management and Analytics",
         category: "hr",
         price: "$200",
         author: "Leslie Alexander Li",
@@ -60,49 +60,48 @@ const courses = [
         title: "Human Resources – Selection and Recruitment",
         category: "hr",
         price: "$150",
-        author: "by Kathryn Murphy",
+        author: "Kathryn Murphy",
         image: "images/course8.png"
     },
     {
         id: 9,
         title: "User Experience. Human-centered Design",
-        category: "marketing",
+        category: "design",
         price: "$240",
         author: "Cody Fisher",
         image: "images/course9.png"
     },
     {
         id: 10,
-        title: "User Experience. Human-centered Design",
+        title: "Advanced Marketing Strategies",
         category: "marketing",
-        price: "$240",
-        author: "Cody Fisher",
-        image: "images/course9.png"
+        price: "$320",
+        author: "Jane Cooper",
+        image: "images/course1.png"
     },
     {
         id: 11,
-        title: "Human Resources – Selection and Recruitment",
-        category: "hr",
-        price: "$150",
-        author: "by Kathryn Murphy",
-        image: "images/course8.png"
+        title: "Leadership and Team Management",
+        category: "management",
+        price: "$450",
+        author: "Robert Fox",
+        image: "images/course2.png"
     },
     {
         id: 12,
-        title: "Business Development Management",
-        category: "management",
-        price: "$400",
-        author: "Dianne Russell",
-        image: "images/course6.png"
-    },
+        title: "UX/UI Design Fundamentals",
+        category: "design",
+        price: "$280",
+        author: "Esther Howard",
+        image: "images/course5.png"
+    }
 ];
 
-// состояние приложения
+// Состояние приложения
 const state = {
     currentCategory: 'all',
     searchQuery: '',
-    visibleCourses: 9,
-    allCourses: courses
+    visibleCourses: 9
 };
 
 // DOM элементы
@@ -114,7 +113,7 @@ const elements = {
     allCount: document.getElementById('all-count')
 };
 
-// подччет карточек по категориям
+// Подсчет карточек по категориям
 function countCoursesByCategory() {
     const counts = {
         all: courses.length,
@@ -124,37 +123,32 @@ function countCoursesByCategory() {
         design: courses.filter(c => c.category === 'design').length,
         development: courses.filter(c => c.category === 'development').length
     };
-    
     return counts;
 }
 
-// обновление цифр в кнопках фильтров
+// Обновление цифр в кнопках фильтров
 function updateFilterCounts() {
     const counts = countCoursesByCategory();
     
-    // Обновллил цифру в "All"
     if (elements.allCount) {
         elements.allCount.textContent = counts.all;
     }
     
-    // Обновил остальные кнопки
-    document.querySelectorAll('.tab__count').forEach(countEl => {
-        const tab = countEl.closest('.tab');
+    document.querySelectorAll('.tab').forEach(tab => {
         const category = tab.dataset.category;
-        if (category !== 'all' && counts[category] !== undefined) {
+        const countEl = tab.querySelector('.tab__count');
+        if (category !== 'all' && counts[category] !== undefined && countEl) {
             countEl.textContent = counts[category];
         }
     });
 }
 
-// фильтр по поиску
+// Фильтрация курсов
 function filterCourses() {
     return courses.filter(course => {
-        // фильтр по категориям
         const categoryMatch = state.currentCategory === 'all' || 
                             course.category === state.currentCategory;
         
-        // фильтр по поиску
         const searchMatch = !state.searchQuery || 
                            course.title.toLowerCase().includes(state.searchQuery.toLowerCase());
         
@@ -162,22 +156,24 @@ function filterCourses() {
     });
 }
 
-// получаем имя категорий 
+// Получение имени категории
 function getCategoryName(categoryKey) {
     const names = {
         marketing: 'Marketing',
         management: 'Management',
-        hr: 'HR & Recruting',
+        hr: 'HR & Recruiting',
         design: 'Design',
         development: 'Development'
     };
     return names[categoryKey] || categoryKey;
 }
 
-// рендер карточек
+// Рендер карточек
 function renderCourses() {
     const filteredCourses = filterCourses();
     const coursesToShow = filteredCourses.slice(0, state.visibleCourses);
+    
+    if (!elements.coursesGrid) return;
     
     elements.coursesGrid.innerHTML = '';
     
@@ -187,6 +183,9 @@ function renderCourses() {
                 <p>No courses found. Try a different search or filter.</p>
             </div>
         `;
+        if (elements.loadMoreBtn) {
+            elements.loadMoreBtn.style.display = 'none';
+        }
         return;
     }
     
@@ -196,22 +195,15 @@ function renderCourses() {
         card.dataset.category = course.category;
         card.dataset.id = course.id;
         
-        // Определил высоту контента и названия
-        const contentHeight = course.category === 'marketing' || 
-                            course.category === 'hr' && course.id === 7 || 
-                            course.category === 'design' && course.id === 8 ? '150' : '120';
-        
-        const titleHeight = contentHeight === '150' ? 'two-lines' : 'one-line';
-        
         card.innerHTML = `
             <div class="course-card__image">
-                <img src="${course.image}" alt="${course.title}">
+                <img src="${course.image}" alt="${course.title}" loading="lazy">
             </div>
-            <div class="course-card__content course-card__content--${contentHeight}">
+            <div class="course-card__content">
                 <div class="course-card__badge course-card__badge--${course.category}">
                     ${getCategoryName(course.category)}
                 </div>
-                <h3 class="course-card__title course-card__title--${titleHeight}">
+                <h3 class="course-card__title">
                     ${course.title}
                 </h3>
                 <div class="course-card__info">
@@ -232,64 +224,61 @@ function renderCourses() {
     }
 }
 
-// обработка кликов по фильтрам
+// Обработка кликов по фильтрам
 function handleFilterClick(e) {
     const tab = e.target.closest('.tab');
     if (!tab) return;
     
     const category = tab.dataset.category;
     
-    // обновил активную кнопку
     document.querySelectorAll('.tab').forEach(t => {
         t.classList.remove('tab--active');
     });
     tab.classList.add('tab--active');
     
-    // обновил состояние и перерендериваем
     state.currentCategory = category;
     state.visibleCourses = 9;
     renderCourses();
 }
 
-// обработка поиска
+// Обработка поиска с debounce
+let searchTimeout;
 function handleSearch(e) {
-    state.searchQuery = e.target.value;
-    state.visibleCourses = 9;
-    renderCourses();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        state.searchQuery = e.target.value;
+        state.visibleCourses = 9;
+        renderCourses();
+    }, 300);
 }
 
-// обработка Load more
+// Обработка Load more
 function handleLoadMore() {
     state.visibleCourses += 6;
     renderCourses();
 }
 
-// обработчики событий
+// Назначение обработчиков событий
 function setupEventListeners() {
     if (elements.tabs) {
         elements.tabs.addEventListener('click', handleFilterClick);
     }
     
-    // Поиск
     if (elements.searchInput) {
         elements.searchInput.addEventListener('input', handleSearch);
     }
     
-    // Кнопка Load more
     if (elements.loadMoreBtn) {
         elements.loadMoreBtn.addEventListener('click', handleLoadMore);
     }
 }
 
+// Инициализация
 function init() {
-    // обновляем счетчики
     updateFilterCounts();
-    
-    // рендерим начальные карточки
     renderCourses();
-    
-    // назначаем обработчики событий
     setupEventListeners();
 }
 
+// Запуск после загрузки DOM
 document.addEventListener('DOMContentLoaded', init);

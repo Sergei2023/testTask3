@@ -1,34 +1,43 @@
-/* основной контейнер */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
 .main_container {
     position: relative;
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
+    padding: 0 20px;
+    
+    @media (min-width: 1920px) {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
 }
 
 .background {
     position: absolute;
     width: 100%;
-    max-width: 1920px;
-    height: auto;
-    min-height: 1757px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 50px;
-    background-color: #ffffff;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
     
-    @media (max-width: 768px) {
-        top: 20px;
-        min-height: auto;
-        position: relative;
-        left: 0;
-        transform: none;
-        width: 100%;
-        height: auto;
+    @media (max-width: 1200px) {
+        position: fixed;
+        opacity: 0.3;
     }
 }
 
-/* картинки по краям */
 .decorations {
     position: absolute;
     width: 100%;
@@ -37,17 +46,19 @@
     
     img {
         position: absolute;
+        max-width: 100%;
+        height: auto;
     }
     
     .dots {
         width: 143px;
         height: 105px;
-        left: 1803px;
+        right: 50px;
         top: 0;
         opacity: 0.8;
         
         @media (max-width: 1600px) {
-            left: calc(100% - 200px);
+            right: 20px;
         }
         
         @media (max-width: 768px) {
@@ -62,6 +73,10 @@
         top: 637px;
         opacity: 0.2;
         
+        @media (max-width: 1200px) {
+            left: 20px;
+        }
+        
         @media (max-width: 768px) {
             display: none;
         }
@@ -70,12 +85,12 @@
     .shape_right {
         width: 85px;
         height: 85px;
-        left: 1763px;
+        right: 50px;
         top: 1054px;
         opacity: 0.2;
         
         @media (max-width: 1600px) {
-            left: calc(100% - 150px);
+            right: 20px;
         }
         
         @media (max-width: 768px) {
@@ -84,63 +99,67 @@
     }
 }
 
-/* Заголовоки */
 .title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
     gap: 8px;
+    margin: 60px auto 40px;
+    max-width: 100%;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
     
-    position: absolute;
-    width: 392px;
-    height: 92px;
-    left: calc(50% - 392px/2 - 26px);
-    top: -6px;
-    
-    @media (max-width: 1024px) {
-        position: relative;
-        left: 0;
-        top: 0;
+    @media (max-width: 768px) {
         margin: 40px auto 30px;
-        width: 90%;
-        max-width: 392px;
-        height: auto;
+    }
+    
+    @media (max-width: 480px) {
+        margin: 30px auto 20px;
     }
     
     &__subheading {
-        width: 210px;
-        height: 24px;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: clamp(14px, 1.2vw, 16px);
+        font-size: clamp(14px, 2vw, 16px);
         line-height: 150%;
         letter-spacing: 1px;
         text-transform: uppercase;
         color: #1E212C;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-        margin: 0;
         text-align: center;
     }
     
     &__heading {
-        width: 100%;
-        max-width: 392px;
-        height: auto;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 900;
-        font-size: clamp(28px, 2.8vw, 46px);
+        font-size: clamp(28px, 5vw, 46px);
         line-height: 130%;
         color: #1E212C;
-        flex: none;
-        order: 1;
-        flex-grow: 0;
-        margin: 0;
         text-align: center;
+        max-width: 600px;
+        
+        @media (max-width: 480px) {
+            font-size: 28px;
+        }
+    }
+}
+
+/* Фильтры и поиск */
+.filters-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    max-width: 1230px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 1200px) {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 
@@ -149,48 +168,23 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0px;
-    gap: 12px;
-    
-    position: absolute;
-    width: 813px;
-    height: 46px;
-    left: calc(345 / 1920 * 100%); /* Процент от ширины */
-    top: 221px;
-    
-    @media (max-width: 1400px) {
-        width: 60%;
-        left: 5%;
-    }
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
     
     @media (max-width: 1200px) {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 813px;
         justify-content: center;
-        flex-wrap: wrap;
-        height: auto;
-        margin-bottom: 80px; /* Отступ для поиска */
     }
     
     @media (max-width: 768px) {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: none;
-        margin: 20px auto 100px; /* Больше отступ для поиска */
-        width: 95%;
-        gap: 8px;
+        gap: 6px;
     }
 }
 
 /* стили для кнопок */
 .tab {
     position: relative;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
@@ -200,42 +194,49 @@
     background: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
     
     @media (max-width: 768px) {
         padding: 8px 12px;
         height: 40px;
+        font-size: 14px;
+    }
+    
+    @media (max-width: 480px) {
+        flex: 1 1 auto;
+        min-width: auto;
+        padding: 6px 10px;
+        font-size: 13px;
     }
     
     &__text {
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: clamp(14px, 1vw, 16px);
+        font-size: clamp(14px, 1.5vw, 16px);
         line-height: 160%;
-        text-align: center;
         color: #9A9CA5;
-        white-space: nowrap;
+        transition: color 0.3s ease;
     }
     
     &__count {
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 900;
-        font-size: clamp(8px, 0.8vw, 10px);
+        font-size: clamp(8px, 1vw, 10px);
         line-height: 150%;
-        text-align: center;
         color: #9A9CA5;
-        margin-left: 8px; 
+        margin-left: 8px;
+        transition: color 0.3s ease;
+        
+        @media (max-width: 480px) {
+            margin-left: 4px;
+        }
     }
     
     /* когда активно */
     &--active {
         border-color: #FF3F3A;
         
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
+        .tab__text,
         .tab__count {
             color: #FF3F3A;
         }
@@ -245,287 +246,58 @@
     &:not(.tab--active):hover {
         border-color: #FF3F3A;
         
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
+        .tab__text,
         .tab__count {
             color: #FF3F3A;
         }
     }
 }
 
-/* кнопка All */
-.tab--all {
-    width: 77px;
-    @media (max-width: 768px) { width: auto; }
-}
-
-/* кнопка Marketing */
-.tab--marketing {
-    width: 124px;
-    
-    @media (max-width: 768px) { 
-        width: auto;
-        .tab__text { width: auto; }
-    }
-    
-    .tab__text {
-        width: 74px;
-        height: 26px;
-        color: #9A9CA5;
-    }
-    
-    .tab__count {
-        width: 6px;
-        height: 15px;
-        color: #9A9CA5;
-    }
-    
-    &.tab--active {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-    
-    &:not(.tab--active):hover {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-}
-
-/* кнопка Management */
-.tab--management {
-    width: 144px;
-    
-    @media (max-width: 768px) { 
-        width: auto;
-        .tab__text { width: auto; }
-    }
-    
-    .tab__text {
-        width: 94px;
-        height: 26px;
-        color: #9A9CA5;
-    }
-    
-    .tab__count {
-        width: 6px;
-        height: 15px;
-        color: #9A9CA5;
-    }
-    
-    &.tab--active {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-    
-    &:not(.tab--active):hover {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-}
-
-/* кнопка HR & Recruting */
-.tab--hr {
-    width: 161px;
-    
-    @media (max-width: 768px) { 
-        width: auto;
-        .tab__text { width: auto; }
-    }
-    
-    .tab__text {
-        width: 111px;
-        height: 26px;
-        color: #9A9CA5;
-    }
-    
-    .tab__count {
-        width: 6px;
-        height: 15px;
-        color: #9A9CA5;
-    }
-    
-    &.tab--active {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-    
-    &:not(.tab--active):hover {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-}
-
-/* кнопка Design */
-.tab--design {
-    width: 100px;
-    
-    @media (max-width: 768px) { 
-        width: auto;
-        .tab__text { width: auto; }
-    }
-    
-    .tab__text {
-        width: 50px;
-        height: 26px;
-        color: #9A9CA5;
-    }
-    
-    .tab__count {
-        width: 6px;
-        height: 15px;
-        color: #9A9CA5;
-    }
-    
-    &.tab--active {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-    
-    &:not(.tab--active):hover {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-}
-
-/* кнопка Development */
-.tab--development {
-    width: 147px;
-    
-    @media (max-width: 768px) { 
-        width: auto;
-        .tab__text { width: auto; }
-    }
-    
-    .tab__text {
-        width: 97px;
-        height: 26px;
-        color: #9A9CA5;
-    }
-    
-    .tab__count {
-        width: 6px;
-        height: 15px;
-        color: #9A9CA5;
-    }
-    
-    &.tab--active {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
-    
-    &:not(.tab--active):hover {
-        .tab__text {
-            color: #FF3F3A;
-        }
-        
-        .tab__count {
-            color: #FF3F3A;
-        }
-    }
+@media (min-width: 1025px) {
+    .tab--all { width: 77px; }
+    .tab--marketing { width: 124px; }
+    .tab--management { width: 144px; }
+    .tab--hr { width: 161px; }
+    .tab--design { width: 100px; }
+    .tab--development { width: 147px; }
 }
 
 /* строка для поиска */
 .search {
-    box-sizing: border-box;
-    position: absolute;
+    position: relative;
     width: 315px;
     height: 44px;
-    left: calc(1260 / 1920 * 100%); /* 1260px в процентах от 1920px */
-    top: 222px;
     background: #FFFFFF;
     border: 1px solid #D7DADD;
     border-radius: 4px;
-    
-    @media (max-width: 1400px) {
-        left: 70%; /* Процент от ширины экрана */
-    }
+    transition: border-color 0.3s ease;
     
     @media (max-width: 1200px) {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        top: auto;
-        margin: 20px auto;
-        width: 90%;
+        width: 100%;
         max-width: 500px;
+        margin: 0 auto;
     }
     
-    @media (max-width: 768px) {
-        width: 95%;
-        margin: 20px auto 30px;
+    &:focus-within {
+        border-color: #FF3F3A;
     }
     
     &__input {
-        position: absolute;
-        width: calc(100% - 48px);
+        width: 100%;
         height: 100%;
-        left: 0;
-        top: 0;
-        padding: 0 16px;
+        padding: 0 48px 0 16px;
         border: none;
         background: transparent;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 400;
-        font-size: clamp(12px, 0.9vw, 14px);
+        font-size: 14px;
         line-height: 150%;
         color: #1E212C;
         border-radius: 4px;
+        outline: none;
         
         &::placeholder {
             color: #9A9CA5;
-        }
-        
-        &:focus {
-            outline: none;
-            border-color: #FF3F3A;
         }
     }
     
@@ -556,92 +328,82 @@
     &__icon {
         width: 16px;
         height: 16px;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        
+        .search__button:hover & {
+            opacity: 1;
+        }
     }
 }
 
-/* картоски товара */
+/* карточки курсов */
 .courses-grid {
-    position: absolute;
-    width: 1230px;
-    height: 1374px;
-    left: calc(345 / 1920 * 100%);
-    top: 327px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    overflow-y: auto;
-    
-    @media (max-width: 1400px) {
-        width: 90%;
-        left: 5%;
-    }
+    max-width: 1230px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
     
     @media (max-width: 1200px) {
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 1230px;
         grid-template-columns: repeat(2, 1fr);
-        height: auto;
-        position: relative;
-        top: 0;
-        margin: 20px auto;
-        margin-top: 100px;
+        gap: 20px;
     }
     
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
         gap: 20px;
-        width: 95%;
-        margin-top: 120px;
+        margin: 30px auto;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 0 15px;
+        gap: 15px;
+        margin: 20px auto;
     }
 }
 
 .course-card {
-    box-sizing: border-box;
-    position: relative;
-    width: 390px;
-    height: 438px;
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
     background: #FFFFFF;
     border: 1px solid #E5E8ED;
-    box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08), 
-                0px 30px 24px -10px rgba(154, 156, 165, 0.05), 
-                0px 12px 10px -6px rgba(154, 156, 165, 0.04), 
-                0px 4px 4px -4px rgba(30, 33, 44, 0.03);
     border-radius: 4px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto;
-    
-    @media (max-width: 1200px) {
-        width: 100%;
-        max-width: 390px;
-    }
+    transition: all 0.3s ease;
+    box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.08),
+                0px 30px 24px -10px rgba(154, 156, 165, 0.05),
+                0px 12px 10px -6px rgba(154, 156, 165, 0.04),
+                0px 4px 4px -4px rgba(30, 33, 44, 0.03);
     
     @media (max-width: 768px) {
-        width: 100%;
         max-width: 100%;
-        height: auto;
-        min-height: 438px;
     }
     
     &:hover {
         transform: translateY(-8px);
-        box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.16), 
-                    0px 30px 24px -10px rgba(154, 156, 165, 0.12), 
-                    0px 12px 10px -6px rgba(154, 156, 165, 0.10), 
+        box-shadow: 0px 80px 80px -20px rgba(154, 156, 165, 0.16),
+                    0px 30px 24px -10px rgba(154, 156, 165, 0.12),
+                    0px 12px 10px -6px rgba(154, 156, 165, 0.10),
                     0px 4px 8px -4px rgba(30, 33, 44, 0.08);
     }
     
     &__image {
-        height: 240px;
         width: 100%;
+        height: 240px;
         background: #F4F5F6;
-        border-radius: 4px 4px 0 0;
         overflow: hidden;
         
         @media (max-width: 768px) {
             height: 200px;
+        }
+        
+        @media (max-width: 480px) {
+            height: 180px;
         }
         
         img {
@@ -656,212 +418,144 @@
         transform: scale(1.05);
     }
     
-    /* контент карточек */
     &__content {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0px;
-        gap: 20px;
-        position: absolute;
-        width: 87.69%;
-        left: 6.15%;
-        top: 60.27%;
+        padding: 24px 24px 32px;
         
         @media (max-width: 768px) {
-            position: relative;
-            width: 90%;
-            left: 5%;
-            top: 0;
-            margin-top: 20px;
-            padding-bottom: 20px;
+            padding: 20px;
+        }
+        
+        @media (max-width: 480px) {
+            padding: 15px;
         }
     }
     
-    /* категории курсво */
     &__badge {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        display: inline-block;
         padding: 1px 8px;
-        gap: 10px;
-        height: 23px;
+        margin-bottom: 20px;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 400;
-        font-size: clamp(12px, 1vw, 14px);
+        font-size: 14px;
         line-height: 150%;
         color: #FFFFFF;
         border-radius: 4px;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
         
-        &--marketing {
-            width: 80px;
-            background: #03CEA4;
+        @media (max-width: 768px) {
+            font-size: 13px;
+            margin-bottom: 15px;
         }
         
-        &--management {
-            width: 97px;
-            background: #5A87FC;
-        }
-        
-        &--hr {
-            width: 112px;
-            background: #F89828;
-        }
-        
-        &--design {
-            width: 59px;
-            background: #F52F6E;
-        }
-        
-        &--development {
-            width: 99px;
-            background: #7772F1;
-        }
+        &--marketing { background: #03CEA4; }
+        &--management { background: #5A87FC; }
+        &--hr { background: #F89828; }
+        &--design { background: #F52F6E; }
+        &--development { background: #7772F1; }
     }
     
-    /* название курса */
     &__title {
-        width: 100%;
+        margin-bottom: 20px;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: clamp(16px, 1.2vw, 20px);
+        font-size: 20px;
         line-height: 150%;
         color: #1E212C;
-        margin: 0;
-        flex: none;
-        order: 1;
-        flex-grow: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 60px;
         
-        &--two-lines {
-            height: 60px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            
-            @media (max-width: 768px) {
-                height: auto;
-                min-height: 60px;
-            }
+        @media (max-width: 768px) {
+            font-size: 18px;
+            margin-bottom: 15px;
+            min-height: 54px;
         }
         
-        &--one-line {
-            height: 30px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            
-            @media (max-width: 768px) {
-                height: auto;
-                min-height: 30px;
-            }
+        @media (max-width: 480px) {
+            font-size: 16px;
+            margin-bottom: 12px;
+            min-height: 48px;
         }
     }
     
-    /* информация о курсе */
     &__info {
         display: flex;
-        flex-direction: row;
         align-items: center;
-        padding: 0px;
-        gap: 8px;
-        height: 27px;
-        flex: none;
-        order: 2;
-        flex-grow: 0;
+        gap: 12px;
         
         @media (max-width: 480px) {
             flex-wrap: wrap;
-            height: auto;
-            gap: 4px;
+            gap: 8px;
         }
     }
     
     &__price {
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: clamp(14px, 1.1vw, 18px);
+        font-size: 18px;
         line-height: 150%;
         color: #FF4242;
+        
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
     }
     
     &__divider {
         width: 16px;
-        height: 0px;
+        height: 0;
         border: 1px solid #787A80;
         transform: rotate(90deg);
+        
+        @media (max-width: 480px) {
+            display: none;
+        }
     }
     
     &__speaker {
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 400;
-        font-size: clamp(14px, 1.1vw, 18px);
+        font-size: 18px;
         line-height: 150%;
         color: #787A80;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+        
         @media (max-width: 480px) {
             width: 100%;
-            text-align: center;
+            white-space: normal;
         }
     }
 }
 
-/* классы для разных высот контента */
-.course-card__content--120 {
-    height: 120px;
-    
-    @media (max-width: 768px) {
-        height: auto;
-        min-height: 120px;
-    }
-}
-
-.course-card__content--150 {
-    height: 150px;
-    
-    @media (max-width: 768px) {
-        height: auto;
-        min-height: 150px;
-    }
-}
-
+/* Кнопка Load more */
 .load-more {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    padding: 0px;
+    justify-content: center;
     gap: 16px;
-    
-    position: absolute;
-    width: 116px;
-    height: 26px;
-    left: 902px;
-    top: 1781px;
-    
-    @media (max-width: 1200px) {
-        left: 50%;
-        transform: translateX(-50%);
-        position: relative;
-        top: 0;
-        margin: 40px auto;
-    }
-    
-    /* обнуление стилей кнопки */
+    margin: 40px auto 60px;
+    padding: 12px 24px;
     background: none;
     border: none;
     cursor: pointer;
-    
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+        margin: 30px auto 40px;
+    }
+    
+    @media (max-width: 480px) {
+        margin: 20px auto 30px;
+    }
     
     &:hover {
         gap: 12px;
@@ -873,10 +567,6 @@
         .load-more__text {
             color: #FF3F3A;
         }
-        
-        svg path {
-            stroke: #FF3F3A;
-        }
     }
     
     &__icon {
@@ -886,18 +576,25 @@
         align-items: center;
         justify-content: center;
         transition: transform 0.3s ease;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
     
     &__text {
-        width: 76px;
-        height: 26px;
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: clamp(14px, 1vw, 16px);
+        font-size: 16px;
         line-height: 160%;
         color: #424551;
         transition: color 0.3s ease;
+        
+        @media (max-width: 768px) {
+            font-size: 15px;
+        }
     }
 }
 
@@ -911,22 +608,9 @@
         font-family: 'Lato', sans-serif;
         font-size: 18px;
         color: #9A9CA5;
-    }
-}
-
-/* Для очень маленьких экранов */
-@media (max-width: 480px) {
-    .tab {
-        flex: 1;
-        min-width: 100px;
-        justify-content: center;
-    }
-    
-    .course-card {
-        height: auto;
-    }
-    
-    .course-card__image {
-        height: 180px;
+        
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
     }
 }
